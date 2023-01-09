@@ -48,14 +48,16 @@ public class Helper {
         customer.setFirstName(faker.name().firstName());
         customer.setLastName(faker.name().lastName());
         customer.setPassword(faker.number().digits(8));
-        customer.setDayBirth(String.valueOf(faker.number().numberBetween(1, 28)));
-        customer.setMonthBirth(String.valueOf(faker.number().numberBetween(1, 12)));
-        customer.setYearBirth(String.valueOf(faker.number().numberBetween(1980, 2010)));
+        customer.setCompany(faker.company().name());
 
-        customer.setAddress(faker.address().fullAddress());
+        customer.setCity(faker.address().cityName());
+        customer.setAddress(faker.address().city());
+        customer.setPostalCode(faker.address().zipCode());
+        customer.setPhoneNUmber(faker.phoneNumber().phoneNumber());
+
         customer.setCity(faker.address().city());
         customer.setPostalCode(faker.address().zipCode());
-        customer.setMobilePhone(
+        customer.setPhoneNUmber(
                 String.valueOf(
                         faker
                                 .number()

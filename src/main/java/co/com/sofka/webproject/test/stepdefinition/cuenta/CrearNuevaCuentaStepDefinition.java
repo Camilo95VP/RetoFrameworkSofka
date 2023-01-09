@@ -1,4 +1,4 @@
-package co.com.sofka.webproject.test.stepdefinition;
+package co.com.sofka.webproject.test.stepdefinition.cuenta;
 
 import co.com.sofka.webproject.test.controllers.LoginPageWebController;
 import co.com.sofka.webproject.test.controllers.MyAccountWebController;

@@ -1,4 +1,4 @@
-package co.com.sofka.webproject.test.runners;
+package co.com.sofka.webproject.test.runners.cuenta;
 
 
 import cucumber.api.CucumberOptions;

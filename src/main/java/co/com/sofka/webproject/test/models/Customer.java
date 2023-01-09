@@ -1,29 +1,40 @@
 package co.com.sofka.webproject.test.models;
 
 public class Customer {
-    private String email;
     private String firstName;
     private String lastName;
-    private String password;
-    private String dayBirth;
-    private String monthBirth;
-    private String yearBirth;
-    private String address;
-    private String city;
-    private String postalCode;
-    private String mobilePhone;
+    private String email;
+    private String company;
+    private String country;
     private String state;
+    private String city;
 
-    public String getEmail() {
-        return email;
+    private String address;
+    private String address2;
+    private String postalCode;
+    private String phoneNUmber;
+    private String faxNumber;
+
+    private String password;
+
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setFirstName(String firstName) {
@@ -38,44 +49,36 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDayBirth() {
-        return dayBirth;
+    public String getCompany() {
+        return company;
     }
 
-    public void setDayBirth(String dayBirth) {
-        this.dayBirth = dayBirth;
+    public void setCompany(String company) {
+        this.company = company;
     }
 
-    public String getMonthBirth() {
-        return monthBirth;
+    public String getCountry() {
+        return country;
     }
 
-    public void setMonthBirth(String monthBirth) {
-        this.monthBirth = monthBirth;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getYearBirth() {
-        return yearBirth;
+    public String getState() {
+        return state;
     }
 
-    public void setYearBirth(String yearBirth) {
-        this.yearBirth = yearBirth;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCity() {
@@ -86,6 +89,15 @@ public class Customer {
         this.city = city;
     }
 
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
     public String getPostalCode() {
         return postalCode;
     }
@@ -94,19 +106,19 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
-    public String getMobilePhone() {
-        return mobilePhone;
+    public String getPhoneNUmber() {
+        return phoneNUmber;
     }
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
+    public void setPhoneNUmber(String phoneNUmber) {
+        this.phoneNUmber = phoneNUmber;
     }
 
-    public String getState() {
-        return state;
+    public String getFaxNumber() {
+        return faxNumber;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
     }
 }
