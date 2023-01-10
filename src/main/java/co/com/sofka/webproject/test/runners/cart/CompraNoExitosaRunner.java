@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         snippets = SnippetType.CAMELCASE,
-        features ={"src/main/resources/features/cart/compraExitosaConUsuarioNoLogueado.feature"},
+        features ={"src/main/resources/features/cart/compraNoExitosaPorTerminosCondiciones.feature"},
         glue={"co.com.sofka.webproject.test.stepdefinition.cart"},
         tags=""
 )
-public class CompraExitosaConUsuarioNoLogueadoRunner {
+public class CompraNoExitosaRunner {
 }

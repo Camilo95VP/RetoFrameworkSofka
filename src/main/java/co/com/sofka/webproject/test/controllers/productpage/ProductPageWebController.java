@@ -42,4 +42,24 @@ public class ProductPageWebController {
         }
     }
 
+    public void agregarProductosSinAceptarTerminos(){
+        try{
+            ProductosPage productsPage = new ProductosPage(webAction.getDriver());
+            webAction.click(productsPage.getHome(), TWENTY_SECONDS.getValue(), true);
+            webAction.click(productsPage.getBooks(), TWENTY_SECONDS.getValue(), true);
+
+            Random r = new SecureRandom();
+
+            List<WebElement> listings = webAction.getDriver().findElements(xpath("//*[@class='item-box']"));
+            webAction.waitFor(listings.get(0), TWENTY_SECONDS.getValue(), true);
+
+            webAction.click(listings.get(r.nextInt(listings.size()/2)), TWENTY_SECONDS.getValue(), true);
+            webAction.click(productsPage.getAdd(), TWENTY_SECONDS.getValue(), true);
+            webAction.click(productsPage.getCar(),TWENTY_SECONDS.getValue(),true);
+            webAction.click(productsPage.getCheckout(),TWENTY_SECONDS.getValue(),true);
+        } catch (WebActionsException e) {
+            Report.reportFailure("Ocurrio un error al agregar los productos al carrito",e);
+        }
+    }
+
 }

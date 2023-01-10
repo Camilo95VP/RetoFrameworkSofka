@@ -1,16 +1,17 @@
-package co.com.sofka.webproject.test.stepdefinition.cuenta;
+package co.com.sofka.webproject.test.stepdefinition.contact;
 
-import co.com.sofka.webproject.test.controllers.LoginPageWebController;
-import co.com.sofka.webproject.test.controllers.MyAccountWebController;
-import co.com.sofka.webproject.test.controllers.RegisterPageWebController;
-import co.com.sofka.webproject.test.controllers.openwebpage.StartBrowserWebController;
-import co.com.sofka.webproject.test.data.objects.TestInfo;
-import co.com.sofka.webproject.test.models.Customer;
-import co.com.sofka.webproject.test.stepdefinition.stup.GeneralSetUp;
 import co.com.sofka.test.actions.WebAction;
 import co.com.sofka.test.evidence.reports.Assert;
 import co.com.sofka.test.evidence.reports.Report;
 import co.com.sofka.test.exceptions.WebActionsException;
+import co.com.sofka.webproject.test.controllers.LoginPageWebController;
+import co.com.sofka.webproject.test.controllers.RegisterPageWebController;
+import co.com.sofka.webproject.test.controllers.checkoutpage.ModalTermsPageWebController;
+import co.com.sofka.webproject.test.controllers.contact.ContactPageWebController;
+import co.com.sofka.webproject.test.controllers.openwebpage.StartBrowserWebController;
+import co.com.sofka.webproject.test.data.objects.TestInfo;
+import co.com.sofka.webproject.test.models.Customer;
+import co.com.sofka.webproject.test.stepdefinition.stup.GeneralSetUp;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -18,13 +19,16 @@ import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
 
-import static co.com.sofka.webproject.test.helpers.Dictionary.*;
+import static co.com.sofka.webproject.test.helpers.Dictionary.COUNTRY_CODE;
+import static co.com.sofka.webproject.test.helpers.Dictionary.EMAIL_DOMAIN;
+import static co.com.sofka.webproject.test.helpers.Dictionary.MESSAGE_ERROR_TERMS;
+import static co.com.sofka.webproject.test.helpers.Dictionary.MESSAGE_SUCCESSFULL_CONTACT;
+import static co.com.sofka.webproject.test.helpers.Dictionary.SPANISH_CODE_LANGUAGE;
 import static co.com.sofka.webproject.test.helpers.Helper.generateCustomer;
 
-public class CrearNuevaCuentaStepDefinition extends GeneralSetUp {
-
-    private WebAction webAction;
+public class ContactoExitosoStepDefinition extends GeneralSetUp {
     private Customer customer;
+    private WebAction webAction;
 
     @Before
     public void setUp(Scenario scenario) {
@@ -33,9 +37,8 @@ public class CrearNuevaCuentaStepDefinition extends GeneralSetUp {
         webAction.setScenario(testInfo.getScenarioName());
         customer = generateCustomer(SPANISH_CODE_LANGUAGE, COUNTRY_CODE, EMAIL_DOMAIN);
     }
-
-    @Dado("que el cliente navegó a la página de inicio")
-    public void queElClienteNavegoALaPaginaDeInicio() {
+    @Dado("que el cliente navegó hasta la sección principal")
+    public void queElClienteNavegóHastaLaSecciónPrincipal() {
         StartBrowserWebController startBrowserWebController = new StartBrowserWebController();
         startBrowserWebController.setBrowser(browser());
         startBrowserWebController.setWebAction(webAction);
@@ -43,8 +46,8 @@ public class CrearNuevaCuentaStepDefinition extends GeneralSetUp {
         startBrowserWebController.abrirTiendaOnline();
     }
 
-    @Cuando("el cliente registra sus datos para una cuenta en línea de forma exitosa")
-    public void elClienteRegistraSusDatosParaUnaCuentaEnLineaDeFormaExitosa() {
+    @Cuando("el cliente se registre para realizar una solicitud de contacto")
+    public void elClienteDiligenciaLaSolicitudDeContacto() {
         LoginPageWebController loginPageWebController = new LoginPageWebController();
         loginPageWebController.setWebAction(webAction);
         loginPageWebController.irHaciaRegisterPage();
@@ -53,21 +56,22 @@ public class CrearNuevaCuentaStepDefinition extends GeneralSetUp {
         registerPageWebController.setCustomer(customer);
         registerPageWebController.setWebAction(webAction);
         registerPageWebController.llenarCamposDeRegistro();
+
+        ContactPageWebController contactPageWebController= new ContactPageWebController();
+        contactPageWebController.setWebAction(webAction);
+        contactPageWebController.setCustomer(customer);
+        contactPageWebController.diligenciarContactoExitoso();
     }
 
-    @Entonces("como resultado el usuario quedará logueado dentro de su respectiva sesión per se")
-    public void comoResultadoElUsuarioQuedaraLogueadoDentroDeSuRespectivaSesionPerSe() {
-        MyAccountWebController myAccountWebController = new MyAccountWebController();
-        myAccountWebController.setWebAction(webAction);
-
-        //Assert.Hard.thatString(myAccountWebController.obtenerNombreDeNuevoUsuario()).isEqualTo(customer.getEmail());
-        Assert.Hard.thatString(myAccountWebController.obtenerNombreDeNuevoUsuario()).isEqualTo("Your registration completed");
-        //Assert.Hard.thatString(myAccountWebController.obtenerNombreDeNuevoUsuario()).contains("registration");
+    @Entonces("el cliente podrá observar que se realizo la solicitud de contacto")
+    public void elClientePodráObservarQueSeRealizoLaSolicitudDeContacto() {
+        ContactPageWebController contacPageWebController=new ContactPageWebController();
+        contacPageWebController.setWebAction(webAction);
+        Assert.Hard.thatString(contacPageWebController.obtenerMensaje()).isEqualTo(MESSAGE_SUCCESSFULL_CONTACT);
     }
 
     @After
-    public void tearDown() throws WebActionsException {
-        webAction.pause(5, false);
+    public void cerrarDriver() throws WebActionsException {
         // Cerrar el driver
         if (webAction != null && webAction.getDriver() != null)
             webAction.closeBrowser();
@@ -77,6 +81,5 @@ public class CrearNuevaCuentaStepDefinition extends GeneralSetUp {
                 .concat("-")
                 .concat(testInfo.getScenarioName()));
     }
-
 
 }

@@ -49,7 +49,7 @@ public class Helper {
         customer.setLastName(faker.name().lastName());
         customer.setPassword(faker.number().digits(8));
         customer.setCompany(faker.company().name());
-
+        customer.setEnquiry(faker.lorem().characters());
         customer.setCity(faker.address().cityName());
         customer.setAddress(faker.address().city());
         customer.setPostalCode(faker.address().zipCode());
@@ -69,6 +69,7 @@ public class Helper {
                                 )
                         )
         );
+        customer.setCountry(COUNTRY_BY_DEFAULT_USA);
         customer.setState(STATE_BY_DEFAULT_FLORIDA);
 
         return customer;

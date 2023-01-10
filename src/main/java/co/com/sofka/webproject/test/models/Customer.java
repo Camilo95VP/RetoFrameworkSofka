@@ -17,6 +17,16 @@ public class Customer {
 
     private String password;
 
+    private String enquiry;
+
+    public String getEnquiry() {
+        return enquiry;
+    }
+
+    public void setEnquiry(String enquiry) {
+        this.enquiry = enquiry;
+    }
+
     public String getPassword() {
         return password;
     }
